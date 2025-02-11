@@ -3,16 +3,17 @@
 const express = require('express');
 require('dotenv').config();
 const { dbConnection } = require('./config/config');
-const taskRoutes = require('./routes/tasks');
+const router = require('./routes/tasksRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware para manejar datos JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Rutas
-app.use('/tasks', taskRoutes);
+// enrutado
+app.use('/', router);
 
 // Conectar a la base de datos
 dbConnection();

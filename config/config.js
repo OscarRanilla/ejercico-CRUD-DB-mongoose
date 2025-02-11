@@ -1,16 +1,12 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+const mongoose = require('mongoose'); // conectamos con la base de datos de mongo db
+require('dotenv').config(); // accedemos a la mongo uri del .env para poder conectarnos
 
 const dbConnection = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        console.log('Base de datos conectada con éxito');
+        await mongoose.connect(process.env.MONGO_URI)
+        console.log('base de datos conectada');
     } catch (error) {
         console.error('Error al conectar la base de datos', error);
-        throw new Error('Error a la hora de iniciar la base de datos');
     }
 };
 
